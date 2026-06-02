@@ -1,0 +1,60 @@
+/* --- CUSTOM MEDIA QUERIES & RESPONSIVE LAYOUTS --- */
+
+/* Responsive Section Padding */
+.section-padding {
+  padding: 7rem 2rem;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 4rem 1.25rem !important;
+  }
+}
+
+/* About Section Responsive Grid */
+.responsive-grid-about {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 5rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .responsive-grid-about {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+}
+
+/* Booking Section Responsive Grid */
+.responsive-grid-booking {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 4rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .responsive-grid-booking {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+  
+  .responsive-grid-booking > div {
+    padding: 1.5rem !important;
+  }
+}
+
+/* Menu Grid Dynamic Responsiveness */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 2.25rem;
+}
+
+@media (max-width: 480px) {
+  .menu-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
