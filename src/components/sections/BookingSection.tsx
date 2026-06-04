@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Calendar, Clock, Users, User, Mail, Phone, MessageSquare, CheckCircle, X } from "lucide-react";
+import { sendFormEmail } from "@/lib/email";
 
 interface BookingFormData {
   firstName: string;
@@ -27,18 +28,40 @@ interface BookingSectionProps {
 export function BookingSection({ isModalOpen = false, onCloseModal }: BookingSectionProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submittedData, setSubmittedData] = useState<BookingFormData | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<BookingFormData>();
 
   const today = new Date().toISOString().split("T")[0];
 
-  const onSubmit = (data: BookingFormData) => {
-    // Store booking in localStorage (mock DB)
-    const bookings = JSON.parse(localStorage.getItem("onyx_bookings") || "[]");
-    bookings.push({ ...data, id: Date.now(), createdAt: new Date().toISOString() });
-    localStorage.setItem("onyx_bookings", JSON.stringify(bookings));
-    setSubmittedData(data);
-    setSubmitted(true);
+  const onSubmit = async (data: BookingFormData) => {
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const result = await sendFormEmail({
+      subject: "New Table Booking - Onyx Espresso Bar",
+      from_name: "Onyx Espresso Bar System",
+      email: data.email,
+      name: `${data.firstName} ${data.lastName}`,
+      phone: data.phone,
+      date: data.date,
+      time: data.time,
+      guests: data.guests,
+      specialRequests: data.specialRequests || "None",
+    });
+
+    setIsSubmitting(false);
+
+    if (result.success) {
+      const bookings = JSON.parse(localStorage.getItem("onyx_bookings") || "[]");
+      bookings.push({ ...data, id: Date.now(), createdAt: new Date().toISOString() });
+      localStorage.setItem("onyx_bookings", JSON.stringify(bookings));
+      setSubmittedData(data);
+      setSubmitted(true);
+    } else {
+      setSubmitError(result.error || "An error occurred. Please try again.");
+    }
   };
 
   const handleReset = () => {
@@ -195,6 +218,7 @@ export function BookingSection({ isModalOpen = false, onCloseModal }: BookingSec
           {/* Submit */}
           <button
             type="submit"
+            disabled={isSubmitting}
             style={{
               width: "100%",
               fontFamily: "'Nunito', sans-serif",
@@ -203,17 +227,28 @@ export function BookingSection({ isModalOpen = false, onCloseModal }: BookingSec
               letterSpacing: "0.2em",
               textTransform: "uppercase",
               color: "#FFFFFF",
-              background: "#C49A3C",
+              background: isSubmitting ? "#A07D2E" : "#C49A3C",
               border: "none",
-              cursor: "pointer",
+              cursor: isSubmitting ? "not-allowed" : "pointer",
               padding: "1.1rem 2rem",
               transition: "background 0.25s ease",
+              opacity: isSubmitting ? 0.8 : 1,
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#A07D2E")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#C49A3C")}
+            onMouseEnter={(e) => {
+              if (!isSubmitting) e.currentTarget.style.background = "#A07D2E";
+            }}
+            onMouseLeave={(e) => {
+              if (!isSubmitting) e.currentTarget.style.background = "#C49A3C";
+            }}
           >
-            Confirm Booking Request
+            {isSubmitting ? "Submitting Booking..." : "Confirm Booking Request"}
           </button>
+
+          {submitError && (
+            <p style={{ ...errorStyle, textAlign: "center", marginTop: "1rem", fontSize: "0.85rem" }}>
+              {submitError}
+            </p>
+          )}
 
           <p
             style={{

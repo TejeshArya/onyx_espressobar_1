@@ -65,7 +65,7 @@ export function Footer({ onBookNow }: FooterProps) {
             Book a Table
           </button>
           <a
-            href="#home"
+            href="#order"
             style={{
               fontFamily: "'Nunito', sans-serif",
               fontWeight: 700,
@@ -272,7 +272,7 @@ export function Footer({ onBookNow }: FooterProps) {
             {[
               "Mayfield, Newcastle NSW 2304",
               "(02) 4000 0000",
-              "hello@onyxespressobar.com.au",
+              "Onyxespressobar@gmail.com",
             ].map((line) => (
               <p
                 key={line}

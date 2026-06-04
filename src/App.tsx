@@ -5,6 +5,7 @@ import { FeaturesSection } from "@/components/sections/FeaturesSection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { MenuSection } from "@/components/sections/MenuSection";
 import { ReviewsSection } from "@/components/sections/ReviewsSection";
+import { OrderSection } from "@/components/sections/OrderSection";
 import { BookingSection } from "@/components/sections/BookingSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/layout/Footer";
@@ -30,6 +31,7 @@ export default function App() {
         <AboutSection />
         <MenuSection />
         <ReviewsSection />
+        <OrderSection />
         <BookingSection />
         <ContactSection />
       </main>

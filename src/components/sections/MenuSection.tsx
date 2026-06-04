@@ -1,6 +1,8 @@
 import { useState, useMemo } from "react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
-import { Search, Info, SlidersHorizontal, Sparkles, Coffee as CoffeeIcon, Egg } from "lucide-react";
+import { Search, Info, SlidersHorizontal, Sparkles, Coffee as CoffeeIcon, Egg, X } from "lucide-react";
+import foodMenuImg from "@/assets/images/onyx_food_menu.jpg";
+import drinksMenuImg from "@/assets/images/onyx_drinks_menu.jpg";
 
 // Categorized types
 interface MenuItem {
@@ -29,7 +31,7 @@ const menuItems: MenuItem[] = [
     description: "Baby spinach, cheddar, hash brown, 2 eggs, slow-cooked pulled pork, aioli & BBQ sauce wrapped in a toasted tortilla. (Vegetarian: swap pork for avocado & relish).",
     price: "$18",
     tags: ["GFO"],
-    image: "https://images.unsplash.com/photo-1626700051175-6518c4793f4f?w=500&h=380&fit=crop&auto=format"
+    image: "https://images.unsplash.com/photo-1566740933430-b5e70b06d2d5?w=500&h=380&fit=crop&auto=format"
   },
   {
     category: "Mains & Breakfast",
@@ -119,7 +121,7 @@ const menuItems: MenuItem[] = [
     description: "Sophisticated omelette with smoked salmon, capers, fresh dill, and smooth cream cheese. Served with toasted sourdough.",
     price: "$24",
     tags: ["GFO"],
-    image: "https://images.unsplash.com/photo-1510627802777-3f411f879a1e?w=500&h=380&fit=crop&auto=format"
+    image: "https://images.unsplash.com/photo-1612531385446-f7e6d131e1d0?w=500&h=380&fit=crop&auto=format"
   },
   {
     category: "Mains & Breakfast",
@@ -173,7 +175,7 @@ const menuItems: MenuItem[] = [
     description: "Crispy bacon strips, fresh lettuce, sliced heirloom tomato, and aioli on toasted Turkish bread. Add avocado for $2.",
     price: "$18",
     tags: ["GFO"],
-    image: "https://images.unsplash.com/photo-1540713434306-585de3c66279?w=500&h=380&fit=crop&auto=format"
+    image: "https://images.unsplash.com/photo-1509722747041-616f39b57569?w=500&h=380&fit=crop&auto=format"
   },
   {
     category: "Burgers & Sandwiches",
@@ -181,7 +183,7 @@ const menuItems: MenuItem[] = [
     description: "Crispy falafel, roasted capsicum hummus, fresh lettuce, tomato, tasty cheddar cheese, pickled onion, and creamy tzatziki on toasted Turkish bread.",
     price: "$18",
     tags: ["V"],
-    image: "https://images.unsplash.com/photo-1547058886-af77992d8d64?w=500&h=380&fit=crop&auto=format"
+    image: "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?w=500&h=380&fit=crop&auto=format"
   },
   {
     category: "Burgers & Sandwiches",
@@ -227,7 +229,7 @@ const menuItems: MenuItem[] = [
     description: "Double smoked leg ham, creamy avocado, house-made tomato relish, sharp cheddar, and garlic aioli pressed on thick-cut sourdough.",
     price: "$18",
     tags: ["GFO"],
-    image: "https://images.unsplash.com/photo-1475090169767-40ed8d18a67d?w=500&h=380&fit=crop&auto=format"
+    image: "https://images.unsplash.com/photo-1525648199074-cee30ba79a4a?w=500&h=380&fit=crop&auto=format"
   },
   {
     category: "Burgers & Sandwiches",
@@ -342,6 +344,12 @@ const menuItems: MenuItem[] = [
     description: "Delicious caramelized Biscoff cookie butter dissolved in rich espresso and velvety milk.",
     price: { cup: "$6.00", mug: "$8.00", large: "$10.00" },
     badge: "Unique Blend"
+  },
+  {
+    category: "Coffee & Teas",
+    name: "Loose Leaf Specialty Teas (Tea Collective)",
+    description: "Specialty loose leaf tea. Choose from: English Breakfast, Wild Earl Grey, Peppermint, Blueberry Sencha, Gingerbread Chai, Happiness Tea, or Lemon-grass & Ginger.",
+    price: "$6.00"
   },
 
   // --- ICED & COLD DRINKS ---
@@ -557,10 +565,17 @@ const breakfastSides = [
 ];
 
 export function MenuSection() {
+  const [menuViewMode, setMenuViewMode] = useState<"photos" | "digital">("photos");
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>("Mains & Breakfast");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedDietary, setSelectedDietary] = useState<"ALL" | "V" | "VE" | "GF">("ALL");
   const [showCustomizers, setShowCustomizers] = useState(false);
+
+  const menuPhotos = [
+    { title: "Food Menu", src: foodMenuImg, alt: "Onyx Espresso Bar Food Menu Page" },
+    { title: "Drinks Menu", src: drinksMenuImg, alt: "Onyx Espresso Bar Drinks and Coffee Menu Page" },
+  ];
 
   // Filtered menu logic
   const filteredItems = useMemo(() => {
@@ -642,10 +657,222 @@ export function MenuSection() {
           </p>
         </div>
 
-        {/* Search and Filters Bar */}
+        {/* View Mode Tab Switcher */}
         <div
           style={{
-            background: "#FFFFFF",
+            display: "flex",
+            justifyContent: "center",
+            gap: "1.25rem",
+            marginBottom: "3.5rem",
+          }}
+        >
+          {[
+            { id: "photos", label: "Menu Pages (Photos)" },
+            { id: "digital", label: "Interactive Digital Menu" },
+          ].map((mode) => (
+            <button
+              key={mode.id}
+              onClick={() => setMenuViewMode(mode.id as any)}
+              style={{
+                fontFamily: "'Nunito', sans-serif",
+                fontWeight: 700,
+                fontSize: "0.85rem",
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                padding: "0.8rem 2.2rem",
+                cursor: "pointer",
+                transition: "all 0.25s ease",
+                border: "2px solid #1A1512",
+                background: menuViewMode === mode.id ? "#1A1512" : "transparent",
+                color: menuViewMode === mode.id ? "#F7F2EC" : "#1A1512",
+              }}
+            >
+              {mode.label}
+            </button>
+          ))}
+        </div>
+
+        {menuViewMode === "photos" ? (
+          <div>
+            {/* Gallery Grid */}
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                gap: "2.5rem",
+                maxWidth: "960px",
+                margin: "0 auto 3.5rem",
+              }}
+            >
+              {menuPhotos.map((photo, idx) => (
+                <div
+                  key={photo.title}
+                  style={{
+                    background: "#FFFFFF",
+                    padding: "1.5rem",
+                    border: "1px solid rgba(26,21,18,0.08)",
+                    boxShadow: "0 4px 25px rgba(0,0,0,0.02)",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    cursor: "pointer",
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  }}
+                  onClick={() => setLightboxIndex(idx)}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-4px)";
+                    e.currentTarget.style.boxShadow = "0 12px 35px rgba(26,21,18,0.08)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow = "0 4px 25px rgba(0,0,0,0.02)";
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "100%",
+                      height: "480px",
+                      overflow: "hidden",
+                      border: "1px solid rgba(26,21,18,0.05)",
+                      marginBottom: "1.5rem",
+                      position: "relative",
+                      background: "#F7F2EC",
+                    }}
+                  >
+                    <img
+                      src={photo.src}
+                      alt={photo.alt}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: "rgba(26,21,18,0.2)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        color: "#FFFFFF",
+                        fontFamily: "'Nunito', sans-serif",
+                        fontWeight: 700,
+                        fontSize: "0.85rem",
+                        letterSpacing: "0.15em",
+                        textTransform: "uppercase",
+                        opacity: 0,
+                        transition: "opacity 0.25s ease",
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
+                      onMouseLeave={(e) => (e.currentTarget.style.opacity = "0")}
+                    >
+                      Click to Zoom & View
+                    </div>
+                  </div>
+                  <h3
+                    style={{
+                      fontFamily: "'Playfair Display', Georgia, serif",
+                      fontWeight: 700,
+                      fontSize: "1.4rem",
+                      color: "#1A1512",
+                      marginBottom: "0.4rem",
+                    }}
+                  >
+                    {photo.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "'Nunito', sans-serif",
+                      fontSize: "0.85rem",
+                      color: "#7A6A5A",
+                      marginBottom: "1.5rem",
+                    }}
+                  >
+                    Expand to view full size
+                  </p>
+                  <a
+                    href={photo.src}
+                    download={photo.title.toLowerCase().replace(" ", "_") + ".png"}
+                    onClick={(e) => e.stopPropagation()}
+                    style={{
+                      fontFamily: "'Nunito', sans-serif",
+                      fontWeight: 700,
+                      fontSize: "0.78rem",
+                      letterSpacing: "0.1em",
+                      textTransform: "uppercase",
+                      color: "#C49A3C",
+                      textDecoration: "none",
+                      borderBottom: "2px solid #C49A3C",
+                      paddingBottom: "3px",
+                      transition: "all 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = "#1A1512";
+                      e.currentTarget.style.borderBottomColor = "#1A1512";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = "#C49A3C";
+                      e.currentTarget.style.borderBottomColor = "#C49A3C";
+                    }}
+                  >
+                    Download Page
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            {/* Complete Menu PDF download Callout */}
+            <div
+              style={{
+                background: "#EDE5D8",
+                padding: "2.5rem",
+                textAlign: "center",
+                borderLeft: "4px solid #C49A3C",
+                maxWidth: "800px",
+                margin: "0 auto 1.5rem",
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "'Nunito', sans-serif",
+                  color: "#1A1512",
+                  fontWeight: 600,
+                  fontSize: "0.95rem",
+                  marginBottom: "1.25rem",
+                }}
+              >
+                Need a copy on the go? Download our full menu as a print-ready PDF.
+              </p>
+              <button
+                onClick={() => alert("The full print-ready PDF menu download will be set up when the final PDF file is provided. In the meantime, you can download each page photo directly.")}
+                style={{
+                  fontFamily: "'Nunito', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "0.8rem",
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "#FFFFFF",
+                  background: "#1A1512",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "1rem 2.5rem",
+                  transition: "background 0.2s ease",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "#C49A3C")}
+                onMouseLeave={(e) => (e.currentTarget.style.background = "#1A1512")}
+              >
+                Download PDF Menu (Placeholder)
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div>
+            {/* Search and Filters Bar */}
+            <div
+              style={{
+                background: "#FFFFFF",
             padding: "1.5rem",
             borderRadius: "0px",
             boxShadow: "0 4px 30px rgba(26,21,18,0.03)",
@@ -1261,7 +1488,6 @@ export function MenuSection() {
 
         {/* Order online CTA */}
         <div
-          id="order"
           style={{ textAlign: "center", marginTop: "4.5rem" }}
         >
           <p
@@ -1272,10 +1498,10 @@ export function MenuSection() {
               marginBottom: "1.25rem",
             }}
           >
-            Short on time? View your order options and return to home page
+            Short on time? Order online for pickup or delivery.
           </p>
           <a
-            href="#home"
+            href="#order"
             style={{
               display: "inline-block",
               fontFamily: "'Nunito', sans-serif",
@@ -1300,10 +1526,133 @@ export function MenuSection() {
               e.currentTarget.style.color = "#1A1512";
             }}
           >
-            Back to Home Page
+            View Ordering Options
           </a>
         </div>
       </div>
+      )}
+      </div>
+
+      {/* Lightbox Modal */}
+      {lightboxIndex !== null && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(26,21,18,0.96)",
+            zIndex: 1000,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "2rem",
+            backdropFilter: "blur(8px)",
+          }}
+          onClick={() => setLightboxIndex(null)}
+        >
+          {/* Close button */}
+          <button
+            onClick={() => setLightboxIndex(null)}
+            style={{
+              position: "absolute",
+              top: "1.5rem",
+              right: "1.5rem",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              color: "#FFFFFF",
+              zIndex: 1001,
+            }}
+          >
+            <X size={32} />
+          </button>
+
+          {/* Navigation buttons */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIndex((prev) => (prev === 0 ? menuPhotos.length - 1 : prev! - 1));
+            }}
+            style={{
+              position: "absolute",
+              left: "1.5rem",
+              background: "rgba(255,255,255,0.06)",
+              border: "none",
+              cursor: "pointer",
+              color: "#FFFFFF",
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 1001,
+            }}
+          >
+            &larr;
+          </button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setLightboxIndex((prev) => (prev === menuPhotos.length - 1 ? 0 : prev! + 1));
+            }}
+            style={{
+              position: "absolute",
+              right: "1.5rem",
+              background: "rgba(255,255,255,0.06)",
+              border: "none",
+              cursor: "pointer",
+              color: "#FFFFFF",
+              width: "48px",
+              height: "48px",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 1001,
+            }}
+          >
+            &rarr;
+          </button>
+
+          {/* Image Display */}
+          <div
+            style={{
+              maxWidth: "90%",
+              maxHeight: "80vh",
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={menuPhotos[lightboxIndex].src}
+              alt={menuPhotos[lightboxIndex].alt}
+              style={{
+                maxWidth: "100%",
+                maxHeight: "70vh",
+                objectFit: "contain",
+                boxShadow: "0 10px 40px rgba(0,0,0,0.6)",
+                border: "2px solid rgba(255,255,255,0.1)",
+              }}
+            />
+            <p
+              style={{
+                fontFamily: "'Playfair Display', Georgia, serif",
+                fontSize: "1.3rem",
+                color: "#FFFFFF",
+                marginTop: "1.5rem",
+                textAlign: "center",
+                textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+              }}
+            >
+              {menuPhotos[lightboxIndex].title} ({lightboxIndex + 1} / {menuPhotos.length})
+            </p>
+          </div>
+        </div>
+      )}
 
       <style>{`
         @keyframes fadeIn {

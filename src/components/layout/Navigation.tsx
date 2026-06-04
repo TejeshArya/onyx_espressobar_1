@@ -34,10 +34,10 @@ export function Navigation({ onBookNow }: NavigationProps) {
       }}
     >
       <div
+        className="px-5 md:px-8"
         style={{
           maxWidth: "1280px",
           margin: "0 auto",
-          padding: "0 2rem",
           height: "72px",
           display: "flex",
           alignItems: "center",
@@ -64,8 +64,7 @@ export function Navigation({ onBookNow }: NavigationProps) {
 
         {/* Desktop nav */}
         <nav
-          style={{ display: "flex", alignItems: "center", gap: "2.5rem" }}
-          className="hidden md:flex"
+          className="hidden md:flex items-center gap-[2.5rem]"
         >
           {[
             { label: "Home", id: "home" },
@@ -147,7 +146,14 @@ export function Navigation({ onBookNow }: NavigationProps) {
           }}
           className="md:hidden"
         >
-          <div style={{ padding: "1.5rem 2rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+          <div
+            className="px-5 py-6"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.25rem",
+            }}
+          >
             {[
               { label: "Home", id: "home" },
               { label: "Menu", id: "menu" },
