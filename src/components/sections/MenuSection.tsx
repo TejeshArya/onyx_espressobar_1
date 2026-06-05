@@ -607,7 +607,7 @@ export function MenuSection() {
       }}
     >
       <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-        
+
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "4rem" }}>
           <p
@@ -873,664 +873,664 @@ export function MenuSection() {
             <div
               style={{
                 background: "#FFFFFF",
-            padding: "1.5rem",
-            borderRadius: "0px",
-            boxShadow: "0 4px 30px rgba(26,21,18,0.03)",
-            border: "1.5px solid rgba(26,21,18,0.08)",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "1.5rem",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: "2.5rem",
-          }}
-        >
-          {/* Search box */}
-          <div style={{ position: "relative", flex: "1 1 300px" }}>
-            <Search
-              size={18}
-              color="rgba(26,21,18,0.4)"
-              style={{
-                position: "absolute",
-                left: "1rem",
-                top: "50%",
-                transform: "translateY(-50%)",
-              }}
-            />
-            <input
-              type="text"
-              placeholder="Search dishes, coffee, ingredients..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontSize: "0.9rem",
-                color: "#1A1512",
-                background: "#F7F2EC",
-                border: "1.5px solid rgba(26,21,18,0.1)",
-                padding: "0.75rem 1rem 0.75rem 2.8rem",
-                width: "100%",
+                padding: "1.5rem",
                 borderRadius: "0px",
-              }}
-            />
-          </div>
-
-          {/* Dietary filters */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              flexWrap: "wrap",
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontSize: "0.8rem",
-                fontWeight: 700,
-                color: "#7A6A5A",
-                textTransform: "uppercase",
-                marginRight: "0.5rem",
+                boxShadow: "0 4px 30px rgba(26,21,18,0.03)",
+                border: "1.5px solid rgba(26,21,18,0.08)",
                 display: "flex",
+                flexWrap: "wrap",
+                gap: "1.5rem",
                 alignItems: "center",
-                gap: "0.35rem",
+                justifyContent: "space-between",
+                marginBottom: "2.5rem",
               }}
             >
-              <SlidersHorizontal size={14} /> Filters:
-            </span>
-            {[
-              { id: "ALL", label: "All Items" },
-              { id: "V", label: "Vegetarian (V)", color: "#C49A3C" },
-              { id: "VE", label: "Vegan (VE)", color: "#4F7942" },
-              { id: "GF", label: "Gluten-Free (GF)", color: "#B87333" },
-            ].map((diet) => (
-              <button
-                key={diet.id}
-                onClick={() => setSelectedDietary(diet.id as any)}
-                style={{
-                  fontFamily: "'Nunito', sans-serif",
-                  fontWeight: 600,
-                  fontSize: "0.75rem",
-                  cursor: "pointer",
-                  padding: "0.45rem 1rem",
-                  background: selectedDietary === diet.id ? "#1A1512" : "transparent",
-                  border: `1.5px solid ${selectedDietary === diet.id ? "#1A1512" : "rgba(26,21,18,0.12)"}`,
-                  color: selectedDietary === diet.id ? "#FFFFFF" : "#7A6A5A",
-                  transition: "all 0.2s ease",
-                }}
-              >
-                {diet.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Category filters */}
-        <div
-          style={{
-            display: "flex",
-            gap: "0.6rem",
-            justifyContent: "center",
-            flexWrap: "wrap",
-            marginBottom: "3.5rem",
-            borderBottom: "1.5px solid rgba(26,21,18,0.08)",
-            paddingBottom: "1rem",
-          }}
-        >
-          {categoryList.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => {
-                setActiveCategory(cat);
-                setSearchQuery(""); // Clear search on tab switch
-              }}
-              style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontWeight: 700,
-                fontSize: "0.85rem",
-                letterSpacing: "0.12em",
-                textTransform: "uppercase",
-                color: activeCategory === cat ? "#C49A3C" : "#7A6A5A",
-                background: "transparent",
-                border: "none",
-                cursor: "pointer",
-                padding: "0.8rem 1.6rem",
-                position: "relative",
-                transition: "all 0.25s ease",
-              }}
-            >
-              {cat}
-              {activeCategory === cat && (
-                <div
+              {/* Search box */}
+              <div style={{ position: "relative", flex: "1 1 300px" }}>
+                <Search
+                  size={18}
+                  color="rgba(26,21,18,0.4)"
                   style={{
                     position: "absolute",
-                    bottom: "-1.1rem",
-                    left: 0,
-                    right: 0,
-                    height: "3px",
-                    background: "#C49A3C",
+                    left: "1rem",
+                    top: "50%",
+                    transform: "translateY(-50%)",
                   }}
                 />
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* Toggle Extras/Sides Panel CTA */}
-        <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-          <button
-            onClick={() => setShowCustomizers(!showCustomizers)}
-            style={{
-              fontFamily: "'Nunito', sans-serif",
-              fontWeight: 700,
-              fontSize: "0.78rem",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              background: "#1A1512",
-              color: "#FFFFFF",
-              border: "none",
-              cursor: "pointer",
-              padding: "0.8rem 1.8rem",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.6rem",
-              boxShadow: "0 4px 15px rgba(26,21,18,0.15)",
-              transition: "all 0.2s ease",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = "#C49A3C")}
-            onMouseLeave={(e) => (e.currentTarget.style.background = "#1A1512")}
-          >
-            <Sparkles size={14} />
-            {showCustomizers ? "Hide Coffee Extras & Sides List" : "Show Coffee Extras & Sides List"}
-          </button>
-        </div>
-
-        {/* Interactive Customization Trays (Optional Expandable panels) */}
-        {showCustomizers && (
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-              gap: "2rem",
-              marginBottom: "3.5rem",
-              animation: "fadeIn 0.4s ease",
-            }}
-          >
-            {/* Extras Card */}
-            <div
-              style={{
-                background: "#FFFFFF",
-                padding: "2rem",
-                border: "1.5px solid rgba(196,154,60,0.25)",
-                boxShadow: "0 6px 30px rgba(196,154,60,0.06)",
-              }}
-            >
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.25rem" }}>
-                <CoffeeIcon size={18} color="#C49A3C" />
-                <h3
+                <input
+                  type="text"
+                  placeholder="Search dishes, coffee, ingredients..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
-                    fontWeight: 700,
-                    fontSize: "1.3rem",
+                    fontFamily: "'Nunito', sans-serif",
+                    fontSize: "0.9rem",
                     color: "#1A1512",
+                    background: "#F7F2EC",
+                    border: "1.5px solid rgba(26,21,18,0.1)",
+                    padding: "0.75rem 1rem 0.75rem 2.8rem",
+                    width: "100%",
+                    borderRadius: "0px",
                   }}
-                >
-                  Coffee Add-ons & Extras
-                </h3>
+                />
               </div>
-              <p
+
+              {/* Dietary filters */}
+              <div
                 style={{
-                  fontFamily: "'Nunito', sans-serif",
-                  fontSize: "0.85rem",
-                  color: "#7A6A5A",
-                  marginBottom: "1.5rem",
-                  lineHeight: 1.5,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  flexWrap: "wrap",
                 }}
               >
-                Customize your hot beverage with our extensive selection of flavor syrups, alternative milks, and double shots.
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
-                {coffeeExtras.map((extra) => (
-                  <div
-                    key={extra.name}
+                <span
+                  style={{
+                    fontFamily: "'Nunito', sans-serif",
+                    fontSize: "0.8rem",
+                    fontWeight: 700,
+                    color: "#7A6A5A",
+                    textTransform: "uppercase",
+                    marginRight: "0.5rem",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.35rem",
+                  }}
+                >
+                  <SlidersHorizontal size={14} /> Filters:
+                </span>
+                {[
+                  { id: "ALL", label: "All Items" },
+                  { id: "V", label: "Vegetarian (V)", color: "#C49A3C" },
+                  { id: "VE", label: "Vegan (VE)", color: "#4F7942" },
+                  { id: "GF", label: "Gluten-Free (GF)", color: "#B87333" },
+                ].map((diet) => (
+                  <button
+                    key={diet.id}
+                    onClick={() => setSelectedDietary(diet.id as any)}
                     style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      paddingBottom: "0.6rem",
-                      borderBottom: "1px dashed rgba(26,21,18,0.1)",
+                      fontFamily: "'Nunito', sans-serif",
+                      fontWeight: 600,
+                      fontSize: "0.75rem",
+                      cursor: "pointer",
+                      padding: "0.45rem 1rem",
+                      background: selectedDietary === diet.id ? "#1A1512" : "transparent",
+                      border: `1.5px solid ${selectedDietary === diet.id ? "#1A1512" : "rgba(26,21,18,0.12)"}`,
+                      color: selectedDietary === diet.id ? "#FFFFFF" : "#7A6A5A",
+                      transition: "all 0.2s ease",
                     }}
                   >
-                    <div>
-                      <p style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: "0.88rem", color: "#1A1512", marginBottom: "0.1rem" }}>
-                        {extra.name}
-                      </p>
-                      <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: "0.78rem", color: "#7A6A5A" }}>
-                        {extra.details}
-                      </p>
-                    </div>
-                    <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "0.9rem", color: "#C49A3C", background: "rgba(196,154,60,0.1)", padding: "0.2rem 0.6rem", borderRadius: "2px" }}>
-                      {extra.price}
-                    </span>
-                  </div>
+                    {diet.label}
+                  </button>
                 ))}
               </div>
             </div>
 
-            {/* Sides Tray Card */}
+            {/* Category filters */}
             <div
               style={{
-                background: "#FFFFFF",
-                padding: "2rem",
-                border: "1.5px solid rgba(196,154,60,0.25)",
-                boxShadow: "0 6px 30px rgba(196,154,60,0.06)",
+                display: "flex",
+                gap: "0.6rem",
+                justifyContent: "center",
+                flexWrap: "wrap",
+                marginBottom: "3.5rem",
+                borderBottom: "1.5px solid rgba(26,21,18,0.08)",
+                paddingBottom: "1rem",
               }}
             >
-              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.25rem" }}>
-                <Egg size={18} color="#C49A3C" />
-                <h3
+              {categoryList.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => {
+                    setActiveCategory(cat);
+                    setSearchQuery(""); // Clear search on tab switch
+                  }}
                   style={{
-                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontFamily: "'Nunito', sans-serif",
                     fontWeight: 700,
-                    fontSize: "1.3rem",
-                    color: "#1A1512",
+                    fontSize: "0.85rem",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: activeCategory === cat ? "#C49A3C" : "#7A6A5A",
+                    background: "transparent",
+                    border: "none",
+                    cursor: "pointer",
+                    padding: "0.8rem 1.6rem",
+                    position: "relative",
+                    transition: "all 0.25s ease",
                   }}
                 >
-                  Breakfast & Mains Sides Tray
-                </h3>
-              </div>
-              <p
+                  {cat}
+                  {activeCategory === cat && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: "-1.1rem",
+                        left: 0,
+                        right: 0,
+                        height: "3px",
+                        background: "#C49A3C",
+                      }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* Toggle Extras/Sides Panel CTA */}
+            <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
+              <button
+                onClick={() => setShowCustomizers(!showCustomizers)}
                 style={{
                   fontFamily: "'Nunito', sans-serif",
-                  fontSize: "0.85rem",
-                  color: "#7A6A5A",
-                  marginBottom: "1.5rem",
-                  lineHeight: 1.5,
+                  fontWeight: 700,
+                  fontSize: "0.78rem",
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  background: "#1A1512",
+                  color: "#FFFFFF",
+                  border: "none",
+                  cursor: "pointer",
+                  padding: "0.8rem 1.8rem",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.6rem",
+                  boxShadow: "0 4px 15px rgba(26,21,18,0.15)",
+                  transition: "all 0.2s ease",
                 }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "#C49A3C")}
+                onMouseLeave={(e) => (e.currentTarget.style.background = "#1A1512")}
               >
-                Accompany your Eggs on Toast, Benedict, or Omelette with premium protein, grilled cheese, or fresh avocado.
-              </p>
+                <Sparkles size={14} />
+                {showCustomizers ? "Hide Coffee Extras & Sides List" : "Show Coffee Extras & Sides List"}
+              </button>
+            </div>
+
+            {/* Interactive Customization Trays (Optional Expandable panels) */}
+            {showCustomizers && (
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "0.6rem",
-                  maxHeight: "260px",
-                  overflowY: "auto",
-                  paddingRight: "0.4rem",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                  gap: "2rem",
+                  marginBottom: "3.5rem",
+                  animation: "fadeIn 0.4s ease",
                 }}
               >
-                {breakfastSides.map((side) => (
-                  <div
-                    key={side.name}
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      padding: "0.4rem 0.6rem",
-                      background: "#F7F2EC",
-                      borderRadius: "0px",
-                    }}
-                  >
-                    <span style={{ fontFamily: "'Nunito', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: "#1A1512" }}>
-                      {side.name}
-                    </span>
-                    <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.8rem", fontWeight: 700, color: "#C49A3C" }}>
-                      {side.price}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Empty state filter match */}
-        {filteredItems.length === 0 && (
-          <div style={{ textAlign: "center", padding: "4rem 1rem", background: "#FFFFFF", border: "1.5px dashed rgba(26,21,18,0.15)" }}>
-            <Info size={40} color="#C49A3C" style={{ marginBottom: "1rem" }} />
-            <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.4rem", color: "#1A1512", marginBottom: "0.5rem" }}>
-              No Menu Items Match Your Search
-            </h3>
-            <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: "0.95rem", color: "#7A6A5A" }}>
-              Try adjusting your dietary filter, removing your search query, or switching categories!
-            </p>
-          </div>
-        )}
-
-        {/* Menu grid */}
-        <div
-          className="menu-grid"
-          style={{
-            gap: "2.25rem",
-          }}
-        >
-          {filteredItems.map((item) => {
-            const hasMultiplePrices = typeof item.price === "object";
-
-            return (
-              <div
-                key={item.name}
-                style={{
-                  background: "#FFFFFF",
-                  border: "1px solid rgba(26,21,18,0.06)",
-                  overflow: "hidden",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  transition: "transform 0.25s ease, box-shadow 0.25s ease",
-                  boxShadow: "0 2px 10px rgba(0,0,0,0.02)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-4px)";
-                  e.currentTarget.style.boxShadow = "0 12px 35px rgba(26,21,18,0.08)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "0 2px 10px rgba(0,0,0,0.02)";
-                }}
-              >
-                <div>
-                  {/* Image (If available) */}
-                  {item.image ? (
-                    <div style={{ position: "relative", overflow: "hidden", height: "230px" }}>
-                      <ImageWithFallback
-                        src={item.image}
-                        alt={item.name}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          transition: "transform 0.4s ease",
-                        }}
-                      />
-                      {/* Badge (e.g. Best Seller) */}
-                      {item.badge && (
-                        <span
-                          style={{
-                            position: "absolute",
-                            top: "1rem",
-                            left: "1rem",
-                            background: "#C49A3C",
-                            color: "#FFFFFF",
-                            fontFamily: "'Nunito', sans-serif",
-                            fontWeight: 800,
-                            fontSize: "0.62rem",
-                            letterSpacing: "0.12em",
-                            textTransform: "uppercase",
-                            padding: "0.35rem 0.8rem",
-                            boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
-                            zIndex: 1,
-                          }}
-                        >
-                          {item.badge}
-                        </span>
-                      )}
-                      
-                      {/* Dietary Badges on Image */}
-                      {item.tags && item.tags.length > 0 && (
-                        <div
-                          style={{
-                            position: "absolute",
-                            bottom: "0.8rem",
-                            right: "0.8rem",
-                            display: "flex",
-                            gap: "0.35rem",
-                            zIndex: 1,
-                          }}
-                        >
-                          {item.tags.map((tag) => {
-                            let tagColor = "#C49A3C"; // V
-                            if (tag === "VE") tagColor = "#4F7942";
-                            else if (tag === "GF") tagColor = "#B87333";
-                            else if (tag === "GFO") tagColor = "#5A5A5A";
-
-                            return (
-                              <span
-                                key={tag}
-                                style={{
-                                  background: tagColor,
-                                  color: "#FFFFFF",
-                                  fontFamily: "'Nunito', sans-serif",
-                                  fontWeight: 800,
-                                  fontSize: "0.62rem",
-                                  padding: "0.2rem 0.5rem",
-                                  borderRadius: "1px",
-                                  boxShadow: "0 1px 4px rgba(0,0,0,0.15)",
-                                }}
-                              >
-                                {tag}
-                              </span>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    // Header tag display for text-only items (e.g. coffee)
-                    item.tags && item.tags.length > 0 && (
-                      <div
-                        style={{
-                          padding: "1.25rem 1.5rem 0.2rem",
-                          display: "flex",
-                          gap: "0.35rem",
-                        }}
-                      >
-                        {item.tags.map((tag) => {
-                          let tagColor = "#C49A3C";
-                          if (tag === "VE") tagColor = "#4F7942";
-                          else if (tag === "GF") tagColor = "#B87333";
-                          else if (tag === "GFO") tagColor = "#5A5A5A";
-
-                          return (
-                            <span
-                              key={tag}
-                              style={{
-                                background: "transparent",
-                                border: `1px solid ${tagColor}`,
-                                color: tagColor,
-                                fontFamily: "'Nunito', sans-serif",
-                                fontWeight: 800,
-                                fontSize: "0.58rem",
-                                padding: "0.15rem 0.45rem",
-                              }}
-                            >
-                              {tag}
-                            </span>
-                          );
-                        })}
-                      </div>
-                    )
-                  )}
-
-                  {/* Text Details */}
-                  <div style={{ padding: "1.5rem 1.5rem 1.25rem" }}>
-                    <div
+                {/* Extras Card */}
+                <div
+                  style={{
+                    background: "#FFFFFF",
+                    padding: "2rem",
+                    border: "1.5px solid rgba(196,154,60,0.25)",
+                    boxShadow: "0 6px 30px rgba(196,154,60,0.06)",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.25rem" }}>
+                    <CoffeeIcon size={18} color="#C49A3C" />
+                    <h3
                       style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "flex-start",
-                        marginBottom: "0.75rem",
-                        gap: "1.2rem",
+                        fontFamily: "'Playfair Display', Georgia, serif",
+                        fontWeight: 700,
+                        fontSize: "1.3rem",
+                        color: "#1A1512",
                       }}
                     >
-                      <h3
+                      Coffee Add-ons & Extras
+                    </h3>
+                  </div>
+                  <p
+                    style={{
+                      fontFamily: "'Nunito', sans-serif",
+                      fontSize: "0.85rem",
+                      color: "#7A6A5A",
+                      marginBottom: "1.5rem",
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    Customize your hot beverage with our extensive selection of flavor syrups, alternative milks, and double shots.
+                  </p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem" }}>
+                    {coffeeExtras.map((extra) => (
+                      <div
+                        key={extra.name}
                         style={{
-                          fontFamily: "'Playfair Display', Georgia, serif",
-                          fontWeight: 700,
-                          fontSize: "1.18rem",
-                          color: "#1A1512",
-                          margin: 0,
-                          lineHeight: 1.3,
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          paddingBottom: "0.6rem",
+                          borderBottom: "1px dashed rgba(26,21,18,0.1)",
                         }}
                       >
-                        {item.name}
-                      </h3>
-                      
-                      {/* Price Render */}
-                      {!hasMultiplePrices ? (
-                        <span
-                          style={{
-                            fontFamily: "'Playfair Display', Georgia, serif",
-                            fontWeight: 700,
-                            fontSize: "1.1rem",
-                            color: "#C49A3C",
-                            flexShrink: 0,
-                          }}
-                        >
-                          {item.price as string}
+                        <div>
+                          <p style={{ fontFamily: "'Nunito', sans-serif", fontWeight: 700, fontSize: "0.88rem", color: "#1A1512", marginBottom: "0.1rem" }}>
+                            {extra.name}
+                          </p>
+                          <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: "0.78rem", color: "#7A6A5A" }}>
+                            {extra.details}
+                          </p>
+                        </div>
+                        <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "0.9rem", color: "#C49A3C", background: "rgba(196,154,60,0.1)", padding: "0.2rem 0.6rem", borderRadius: "2px" }}>
+                          {extra.price}
                         </span>
-                      ) : null}
-                    </div>
-
-                    {/* Description */}
-                    {item.description && (
-                      <p
-                        style={{
-                          fontFamily: "'Nunito', sans-serif",
-                          fontSize: "0.88rem",
-                          lineHeight: 1.6,
-                          color: "#7A6A5A",
-                          margin: 0,
-                        }}
-                      >
-                        {item.description}
-                      </p>
-                    )}
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                {/* Multiple size pricing footer */}
-                {hasMultiplePrices && (
-                  <div
+                {/* Sides Tray Card */}
+                <div
+                  style={{
+                    background: "#FFFFFF",
+                    padding: "2rem",
+                    border: "1.5px solid rgba(196,154,60,0.25)",
+                    boxShadow: "0 6px 30px rgba(196,154,60,0.06)",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.25rem" }}>
+                    <Egg size={18} color="#C49A3C" />
+                    <h3
+                      style={{
+                        fontFamily: "'Playfair Display', Georgia, serif",
+                        fontWeight: 700,
+                        fontSize: "1.3rem",
+                        color: "#1A1512",
+                      }}
+                    >
+                      Breakfast & Mains Sides Tray
+                    </h3>
+                  </div>
+                  <p
                     style={{
-                      background: "#FDFDFD",
-                      borderTop: "1px dashed rgba(26,21,18,0.06)",
-                      padding: "0.9rem 1.5rem",
-                      display: "flex",
-                      justifyContent: "space-around",
-                      alignItems: "center",
+                      fontFamily: "'Nunito', sans-serif",
+                      fontSize: "0.85rem",
+                      color: "#7A6A5A",
+                      marginBottom: "1.5rem",
+                      lineHeight: 1.5,
                     }}
                   >
-                    {/* Size options rendering */}
-                    {item.price && "cup" in (item.price as any) ? (
-                      <>
-                        <div style={{ textAlign: "center" }}>
-                          <span style={{ fontSize: "0.65rem", fontFamily: "'Nunito', sans-serif", textTransform: "uppercase", letterSpacing: "0.08em", color: "#7A6A5A", display: "block" }}>Cup</span>
-                          <span style={{ fontSize: "0.92rem", fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#C49A3C" }}>{(item.price as any).cup}</span>
+                    Accompany your Eggs on Toast, Benedict, or Omelette with premium protein, grilled cheese, or fresh avocado.
+                  </p>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 1fr",
+                      gap: "0.6rem",
+                      maxHeight: "260px",
+                      overflowY: "auto",
+                      paddingRight: "0.4rem",
+                    }}
+                  >
+                    {breakfastSides.map((side) => (
+                      <div
+                        key={side.name}
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          padding: "0.4rem 0.6rem",
+                          background: "#F7F2EC",
+                          borderRadius: "0px",
+                        }}
+                      >
+                        <span style={{ fontFamily: "'Nunito', sans-serif", fontSize: "0.8rem", fontWeight: 600, color: "#1A1512" }}>
+                          {side.name}
+                        </span>
+                        <span style={{ fontFamily: "'Playfair Display', serif", fontSize: "0.8rem", fontWeight: 700, color: "#C49A3C" }}>
+                          {side.price}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Empty state filter match */}
+            {filteredItems.length === 0 && (
+              <div style={{ textAlign: "center", padding: "4rem 1rem", background: "#FFFFFF", border: "1.5px dashed rgba(26,21,18,0.15)" }}>
+                <Info size={40} color="#C49A3C" style={{ marginBottom: "1rem" }} />
+                <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: "1.4rem", color: "#1A1512", marginBottom: "0.5rem" }}>
+                  No Menu Items Match Your Search
+                </h3>
+                <p style={{ fontFamily: "'Nunito', sans-serif", fontSize: "0.95rem", color: "#7A6A5A" }}>
+                  Try adjusting your dietary filter, removing your search query, or switching categories!
+                </p>
+              </div>
+            )}
+
+            {/* Menu grid */}
+            <div
+              className="menu-grid"
+              style={{
+                gap: "2.25rem",
+              }}
+            >
+              {filteredItems.map((item) => {
+                const hasMultiplePrices = typeof item.price === "object";
+
+                return (
+                  <div
+                    key={item.name}
+                    style={{
+                      background: "#FFFFFF",
+                      border: "1px solid rgba(26,21,18,0.06)",
+                      overflow: "hidden",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      transition: "transform 0.25s ease, box-shadow 0.25s ease",
+                      boxShadow: "0 2px 10px rgba(0,0,0,0.02)",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = "translateY(-4px)";
+                      e.currentTarget.style.boxShadow = "0 12px 35px rgba(26,21,18,0.08)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = "translateY(0)";
+                      e.currentTarget.style.boxShadow = "0 2px 10px rgba(0,0,0,0.02)";
+                    }}
+                  >
+                    <div>
+                      {/* Image (If available) */}
+                      {item.image ? (
+                        <div style={{ position: "relative", overflow: "hidden", height: "230px" }}>
+                          <ImageWithFallback
+                            src={item.image}
+                            alt={item.name}
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "cover",
+                              transition: "transform 0.4s ease",
+                            }}
+                          />
+                          {/* Badge (e.g. Best Seller) */}
+                          {item.badge && (
+                            <span
+                              style={{
+                                position: "absolute",
+                                top: "1rem",
+                                left: "1rem",
+                                background: "#C49A3C",
+                                color: "#FFFFFF",
+                                fontFamily: "'Nunito', sans-serif",
+                                fontWeight: 800,
+                                fontSize: "0.62rem",
+                                letterSpacing: "0.12em",
+                                textTransform: "uppercase",
+                                padding: "0.35rem 0.8rem",
+                                boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
+                                zIndex: 1,
+                              }}
+                            >
+                              {item.badge}
+                            </span>
+                          )}
+
+                          {/* Dietary Badges on Image */}
+                          {item.tags && item.tags.length > 0 && (
+                            <div
+                              style={{
+                                position: "absolute",
+                                bottom: "0.8rem",
+                                right: "0.8rem",
+                                display: "flex",
+                                gap: "0.35rem",
+                                zIndex: 1,
+                              }}
+                            >
+                              {item.tags.map((tag) => {
+                                let tagColor = "#C49A3C"; // V
+                                if (tag === "VE") tagColor = "#4F7942";
+                                else if (tag === "GF") tagColor = "#B87333";
+                                else if (tag === "GFO") tagColor = "#5A5A5A";
+
+                                return (
+                                  <span
+                                    key={tag}
+                                    style={{
+                                      background: tagColor,
+                                      color: "#FFFFFF",
+                                      fontFamily: "'Nunito', sans-serif",
+                                      fontWeight: 800,
+                                      fontSize: "0.62rem",
+                                      padding: "0.2rem 0.5rem",
+                                      borderRadius: "1px",
+                                      boxShadow: "0 1px 4px rgba(0,0,0,0.15)",
+                                    }}
+                                  >
+                                    {tag}
+                                  </span>
+                                );
+                              })}
+                            </div>
+                          )}
                         </div>
-                        <div style={{ width: "1px", height: "20px", background: "rgba(26,21,18,0.1)" }} />
-                        <div style={{ textAlign: "center" }}>
-                          <span style={{ fontSize: "0.65rem", fontFamily: "'Nunito', sans-serif", textTransform: "uppercase", letterSpacing: "0.08em", color: "#7A6A5A", display: "block" }}>Mug</span>
-                          <span style={{ fontSize: "0.92rem", fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#C49A3C" }}>{(item.price as any).mug}</span>
+                      ) : (
+                        // Header tag display for text-only items (e.g. coffee)
+                        item.tags && item.tags.length > 0 && (
+                          <div
+                            style={{
+                              padding: "1.25rem 1.5rem 0.2rem",
+                              display: "flex",
+                              gap: "0.35rem",
+                            }}
+                          >
+                            {item.tags.map((tag) => {
+                              let tagColor = "#C49A3C";
+                              if (tag === "VE") tagColor = "#4F7942";
+                              else if (tag === "GF") tagColor = "#B87333";
+                              else if (tag === "GFO") tagColor = "#5A5A5A";
+
+                              return (
+                                <span
+                                  key={tag}
+                                  style={{
+                                    background: "transparent",
+                                    border: `1px solid ${tagColor}`,
+                                    color: tagColor,
+                                    fontFamily: "'Nunito', sans-serif",
+                                    fontWeight: 800,
+                                    fontSize: "0.58rem",
+                                    padding: "0.15rem 0.45rem",
+                                  }}
+                                >
+                                  {tag}
+                                </span>
+                              );
+                            })}
+                          </div>
+                        )
+                      )}
+
+                      {/* Text Details */}
+                      <div style={{ padding: "1.5rem 1.5rem 1.25rem" }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "flex-start",
+                            marginBottom: "0.75rem",
+                            gap: "1.2rem",
+                          }}
+                        >
+                          <h3
+                            style={{
+                              fontFamily: "'Playfair Display', Georgia, serif",
+                              fontWeight: 700,
+                              fontSize: "1.18rem",
+                              color: "#1A1512",
+                              margin: 0,
+                              lineHeight: 1.3,
+                            }}
+                          >
+                            {item.name}
+                          </h3>
+
+                          {/* Price Render */}
+                          {!hasMultiplePrices ? (
+                            <span
+                              style={{
+                                fontFamily: "'Playfair Display', Georgia, serif",
+                                fontWeight: 700,
+                                fontSize: "1.1rem",
+                                color: "#C49A3C",
+                                flexShrink: 0,
+                              }}
+                            >
+                              {item.price as string}
+                            </span>
+                          ) : null}
                         </div>
-                        <div style={{ width: "1px", height: "20px", background: "rgba(26,21,18,0.1)" }} />
-                        <div style={{ textAlign: "center" }}>
-                          <span style={{ fontSize: "0.65rem", fontFamily: "'Nunito', sans-serif", textTransform: "uppercase", letterSpacing: "0.08em", color: "#7A6A5A", display: "block" }}>Large</span>
-                          <span style={{ fontSize: "0.92rem", fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#C49A3C" }}>{(item.price as any).large}</span>
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        <div style={{ textAlign: "center" }}>
-                          <span style={{ fontSize: "0.65rem", fontFamily: "'Nunito', sans-serif", textTransform: "uppercase", letterSpacing: "0.08em", color: "#7A6A5A", display: "block" }}>Regular</span>
-                          <span style={{ fontSize: "0.92rem", fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#C49A3C" }}>{(item.price as any).reg}</span>
-                        </div>
-                        <div style={{ width: "1px", height: "20px", background: "rgba(26,21,18,0.1)" }} />
-                        <div style={{ textAlign: "center" }}>
-                          <span style={{ fontSize: "0.65rem", fontFamily: "'Nunito', sans-serif", textTransform: "uppercase", letterSpacing: "0.08em", color: "#7A6A5A", display: "block" }}>Large</span>
-                          <span style={{ fontSize: "0.92rem", fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#C49A3C" }}>{(item.price as any).lrg}</span>
-                        </div>
-                      </>
+
+                        {/* Description */}
+                        {item.description && (
+                          <p
+                            style={{
+                              fontFamily: "'Nunito', sans-serif",
+                              fontSize: "0.88rem",
+                              lineHeight: 1.6,
+                              color: "#7A6A5A",
+                              margin: 0,
+                            }}
+                          >
+                            {item.description}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Multiple size pricing footer */}
+                    {hasMultiplePrices && (
+                      <div
+                        style={{
+                          background: "#FDFDFD",
+                          borderTop: "1px dashed rgba(26,21,18,0.06)",
+                          padding: "0.9rem 1.5rem",
+                          display: "flex",
+                          justifyContent: "space-around",
+                          alignItems: "center",
+                        }}
+                      >
+                        {/* Size options rendering */}
+                        {item.price && "cup" in (item.price as any) ? (
+                          <>
+                            <div style={{ textAlign: "center" }}>
+                              <span style={{ fontSize: "0.65rem", fontFamily: "'Nunito', sans-serif", textTransform: "uppercase", letterSpacing: "0.08em", color: "#7A6A5A", display: "block" }}>Cup</span>
+                              <span style={{ fontSize: "0.92rem", fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#C49A3C" }}>{(item.price as any).cup}</span>
+                            </div>
+                            <div style={{ width: "1px", height: "20px", background: "rgba(26,21,18,0.1)" }} />
+                            <div style={{ textAlign: "center" }}>
+                              <span style={{ fontSize: "0.65rem", fontFamily: "'Nunito', sans-serif", textTransform: "uppercase", letterSpacing: "0.08em", color: "#7A6A5A", display: "block" }}>Mug</span>
+                              <span style={{ fontSize: "0.92rem", fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#C49A3C" }}>{(item.price as any).mug}</span>
+                            </div>
+                            <div style={{ width: "1px", height: "20px", background: "rgba(26,21,18,0.1)" }} />
+                            <div style={{ textAlign: "center" }}>
+                              <span style={{ fontSize: "0.65rem", fontFamily: "'Nunito', sans-serif", textTransform: "uppercase", letterSpacing: "0.08em", color: "#7A6A5A", display: "block" }}>Large</span>
+                              <span style={{ fontSize: "0.92rem", fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#C49A3C" }}>{(item.price as any).large}</span>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div style={{ textAlign: "center" }}>
+                              <span style={{ fontSize: "0.65rem", fontFamily: "'Nunito', sans-serif", textTransform: "uppercase", letterSpacing: "0.08em", color: "#7A6A5A", display: "block" }}>Regular</span>
+                              <span style={{ fontSize: "0.92rem", fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#C49A3C" }}>{(item.price as any).reg}</span>
+                            </div>
+                            <div style={{ width: "1px", height: "20px", background: "rgba(26,21,18,0.1)" }} />
+                            <div style={{ textAlign: "center" }}>
+                              <span style={{ fontSize: "0.65rem", fontFamily: "'Nunito', sans-serif", textTransform: "uppercase", letterSpacing: "0.08em", color: "#7A6A5A", display: "block" }}>Large</span>
+                              <span style={{ fontSize: "0.92rem", fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#C49A3C" }}>{(item.price as any).lrg}</span>
+                            </div>
+                          </>
+                        )}
+                      </div>
                     )}
                   </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
+                );
+              })}
+            </div>
 
-        {/* Counter Info Callout */}
-        <div
-          style={{
-            marginTop: "4.5rem",
-            background: "#1A1512",
-            padding: "2rem",
-            textAlign: "center",
-            borderLeft: "4px solid #C49A3C",
-            boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
-          }}
-        >
-          <h3
-            style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontSize: "1.4rem",
-              color: "#F7F2EC",
-              marginBottom: "0.6rem",
-              letterSpacing: "0.05em",
-            }}
-          >
-            &gt;&gt; PLEASE ORDER AND PAY AT COUNTER &lt;&lt;
-          </h3>
-          <p
-            style={{
-              fontFamily: "'Nunito', sans-serif",
-              fontSize: "0.85rem",
-              color: "rgba(247,242,236,0.65)",
-              letterSpacing: "0.05em",
-              margin: 0,
-            }}
-          >
-            10% surcharge Sundays | 15% surcharge Public Holidays. Please inform our staff of any allergies when ordering.
-          </p>
-        </div>
+            {/* Counter Info Callout */}
+            <div
+              style={{
+                marginTop: "4.5rem",
+                background: "#1A1512",
+                padding: "2rem",
+                textAlign: "center",
+                borderLeft: "4px solid #C49A3C",
+                boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
+              }}
+            >
+              <h3
+                style={{
+                  fontFamily: "'Playfair Display', Georgia, serif",
+                  fontSize: "1.4rem",
+                  color: "#F7F2EC",
+                  marginBottom: "0.6rem",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                &gt;&gt; PLEASE ORDER AND PAY AT COUNTER &lt;&lt;
+              </h3>
+              <p
+                style={{
+                  fontFamily: "'Nunito', sans-serif",
+                  fontSize: "0.85rem",
+                  color: "rgba(247,242,236,0.65)",
+                  letterSpacing: "0.05em",
+                  margin: 0,
+                }}
+              >
+                10% surcharge Sundays | 15% surcharge Public Holidays. Please inform our staff of any allergies when ordering.
+              </p>
+            </div>
 
-        {/* Order online CTA */}
-        <div
-          style={{ textAlign: "center", marginTop: "4.5rem" }}
-        >
-          <p
-            style={{
-              fontFamily: "'Nunito', sans-serif",
-              color: "#7A6A5A",
-              fontSize: "0.98rem",
-              marginBottom: "1.25rem",
-            }}
-          >
-            Short on time? Order online for pickup or delivery.
-          </p>
-          <a
-            href="#order"
-            style={{
-              display: "inline-block",
-              fontFamily: "'Nunito', sans-serif",
-              fontWeight: 700,
-              fontSize: "0.8rem",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              color: "#1A1512",
-              background: "transparent",
-              border: "2px solid #1A1512",
-              cursor: "pointer",
-              padding: "1rem 2.5rem",
-              textDecoration: "none",
-              transition: "background 0.25s ease, color 0.25s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "#1A1512";
-              e.currentTarget.style.color = "#F7F2EC";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "transparent";
-              e.currentTarget.style.color = "#1A1512";
-            }}
-          >
-            View Ordering Options
-          </a>
-        </div>
-      </div>
-      )}
+            {/* Order online CTA */}
+            <div
+              style={{ textAlign: "center", marginTop: "4.5rem" }}
+            >
+              <p
+                style={{
+                  fontFamily: "'Nunito', sans-serif",
+                  color: "#7A6A5A",
+                  fontSize: "0.98rem",
+                  marginBottom: "1.25rem",
+                }}
+              >
+                Short on time? Order online for pickup or delivery.
+              </p>
+              <a
+                href="#order"
+                style={{
+                  display: "inline-block",
+                  fontFamily: "'Nunito', sans-serif",
+                  fontWeight: 700,
+                  fontSize: "0.8rem",
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "#1A1512",
+                  background: "transparent",
+                  border: "2px solid #1A1512",
+                  cursor: "pointer",
+                  padding: "1rem 2.5rem",
+                  textDecoration: "none",
+                  transition: "background 0.25s ease, color 0.25s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "#1A1512";
+                  e.currentTarget.style.color = "#F7F2EC";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.color = "#1A1512";
+                }}
+              >
+                View Ordering Options
+              </a>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Lightbox Modal */}
