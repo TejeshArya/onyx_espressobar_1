@@ -3,6 +3,12 @@ import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
 import { Search, Info, SlidersHorizontal, Sparkles, Coffee as CoffeeIcon, Egg, X } from "lucide-react";
 import foodMenuImg from "@/assets/images/onyx_food_menu.jpg";
 import drinksMenuImg from "@/assets/images/onyx_drinks_menu.jpg";
+import coffeeBagsImg from "@/assets/images/coffee_bags.jpg";
+import coldJuiceImg from "@/assets/images/cold_juice.jpg";
+import icedDrinksTrayImg from "@/assets/images/iced_drinks_tray.jpg";
+import latteCupImg from "@/assets/images/latte_cup.jpg";
+import burgerHandImg from "@/assets/images/burger_hand.jpg";
+import freakShakeImg from "@/assets/images/freak_shake.jpg";
 
 // Categorized types
 interface MenuItem {
@@ -121,7 +127,7 @@ const menuItems: MenuItem[] = [
     description: "Sophisticated omelette with smoked salmon, capers, fresh dill, and smooth cream cheese. Served with toasted sourdough.",
     price: "$24",
     tags: ["GFO"],
-    image: "https://images.unsplash.com/photo-1612531385446-f7e6d131e1d0?w=500&h=380&fit=crop&auto=format"
+    image: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=500&h=380&fit=crop&auto=format"
   },
   {
     category: "Mains & Breakfast",
@@ -152,7 +158,7 @@ const menuItems: MenuItem[] = [
     name: "Onyx Beef Burger & Chips",
     description: "Premium Wagyu beef patty, crispy cos lettuce, fresh tomato, Swiss cheese, caramelised onion, gherkins, aioli, and mild dijon mustard in a toasted brioche bun. Served with golden chips.",
     price: "$23",
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&h=380&fit=crop&auto=format",
+    image: burgerHandImg,
     badge: "Must Try"
   },
   {
@@ -269,7 +275,8 @@ const menuItems: MenuItem[] = [
     category: "Coffee & Teas",
     name: "White (Ona Aspen Blend)",
     description: "Flat white, cappuccino, latte. Beautiful sweet notes from Ona Aspen blend. Choose Cup, Mug, or Large.",
-    price: { cup: "$4.50", mug: "$5.20", large: "$6.20" }
+    price: { cup: "$4.50", mug: "$5.20", large: "$6.20" },
+    image: latteCupImg
   },
   {
     category: "Coffee & Teas",
@@ -281,7 +288,8 @@ const menuItems: MenuItem[] = [
     category: "Coffee & Teas",
     name: "Long Black (Ona Single Origin)",
     description: "Double shot of Ona single origin espresso poured over hot water. Ask about today's origins.",
-    price: { cup: "$4.50", mug: "$5.20", large: "$6.20" }
+    price: { cup: "$4.50", mug: "$5.20", large: "$6.20" },
+    image: coffeeBagsImg
   },
   {
     category: "Coffee & Teas",
@@ -382,14 +390,16 @@ const menuItems: MenuItem[] = [
     name: "Ferrero Freak Shake",
     description: "Legendary shake layered with Nutella, Ferrero Rocher, Bueno chunks, crushed hazelnuts, chocolate fudge, and rich vanilla ice cream.",
     price: "$14.50",
-    badge: "Freak Shake"
+    badge: "Freak Shake",
+    image: freakShakeImg
   },
   {
     category: "Iced & Cold Drinks",
     name: "Cold Pressed Juices",
     description: "100% natural. Choose: Ginger Zinger (Carrot, apple, ginger, lemon), Refresh Me (Watermelon, apple, mint), Immune Booster (Orange, apple, ginger, lemon), or Tropical Dreams (Watermelon, apple, mango, passionfruit).",
     price: "$11.00",
-    badge: "Healthy Pressed"
+    badge: "Healthy Pressed",
+    image: coldJuiceImg
   },
   {
     category: "Iced & Cold Drinks",
@@ -450,7 +460,8 @@ const menuItems: MenuItem[] = [
     name: "Iced Latte Tasting Board",
     description: "A stunning gourmet flight of 4 mini iced lattes. Choose 4 from: Butterscotch, Milk Choc Mocha, White Choc Mocha, Biscoff, Chai, or Dirty Chai.",
     price: "$18.00",
-    badge: "Unique Flight"
+    badge: "Unique Flight",
+    image: icedDrinksTrayImg
   },
   {
     category: "Iced & Cold Drinks",

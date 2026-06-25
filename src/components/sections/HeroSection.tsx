@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
+import baristaLatteArtImg from "@/assets/images/barista_latte_art.jpg";
 
 interface HeroSectionProps {
   onBookNow: () => void;
@@ -25,7 +26,7 @@ export function HeroSection({ onBookNow }: HeroSectionProps) {
     >
       {/* Background photo */}
       <ImageWithFallback
-        src="https://images.unsplash.com/photo-1766767164066-d2f4571e75d1?w=1920&h=1080&fit=crop&auto=format"
+        src={baristaLatteArtImg}
         alt="Barista crafting coffee at Onyx Espresso Bar"
         style={{
           position: "absolute",
