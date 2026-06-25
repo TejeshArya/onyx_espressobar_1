@@ -70,7 +70,7 @@ const menuItems: MenuItem[] = [
     description: "Smashed avocado on toasted sourdough, topped with a poached egg, cherry tomatoes, crumbled feta, pumpkin and sunflower seeds, beetroot relish, and a sprinkle of sumac. Served with lemon.",
     price: "$22",
     tags: ["V", "GFO"],
-    image: "https://images.unsplash.com/photo-1541532713592-79a0317b6b77?w=500&h=380&fit=crop&auto=format",
+    image: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?w=500&h=380&fit=crop&auto=format",
     badge: "Crowd Favourite"
   },
   {
