@@ -1,5 +1,7 @@
 import { MapPin, Clock, Dog } from "lucide-react";
 import { ImageWithFallback } from "@/components/ui/ImageWithFallback";
+import cafeFoodTableImg from "@/assets/images/cafe_food_table.jpg";
+import storefrontImg from "@/assets/images/storefront.jpg";
 
 export function AboutSection() {
   return (
@@ -16,25 +18,39 @@ export function AboutSection() {
           margin: "0 auto",
         }}
       >
-        {/* Image */}
-        <div style={{ position: "relative" }}>
-          <ImageWithFallback
-            src="https://images.unsplash.com/photo-1776437209596-8c96f7c6dcda?w=700&h=550&fit=crop&auto=format"
-            alt="Interior of Onyx Espresso Bar with warm lighting and hanging lamps"
-            style={{
-              width: "100%",
-              height: "480px",
-              objectFit: "cover",
-            }}
-          />
+        {/* Images Grid */}
+        <div style={{ position: "relative", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem", alignItems: "start" }}>
+          <div style={{ position: "relative", height: "420px", overflow: "hidden" }}>
+            <ImageWithFallback
+              src={storefrontImg}
+              alt="Onyx Espresso Bar storefront"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          </div>
+          <div style={{ position: "relative", height: "420px", marginTop: "2rem", overflow: "hidden" }}>
+            <ImageWithFallback
+              src={cafeFoodTableImg}
+              alt="Delicious breakfast and brunch table spread at Onyx"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          </div>
+
           {/* Gold frame accent */}
           <div
             style={{
               position: "absolute",
-              bottom: "-20px",
-              right: "-20px",
-              width: "180px",
-              height: "180px",
+              bottom: "-10px",
+              right: "-10px",
+              width: "140px",
+              height: "140px",
               border: "2px solid #C49A3C",
               zIndex: 0,
               pointerEvents: "none",
@@ -49,6 +65,7 @@ export function AboutSection() {
               background: "#C49A3C",
               padding: "1rem 1.25rem",
               textAlign: "center",
+              zIndex: 2,
             }}
           >
             <p
