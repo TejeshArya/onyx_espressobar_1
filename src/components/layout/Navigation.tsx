@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import logoImg from "@/assets/images/logo.jpg";
 
 interface NavigationProps {
   onBookNow: () => void;
@@ -48,18 +49,25 @@ export function Navigation({ onBookNow }: NavigationProps) {
         <button
           onClick={() => scrollTo("home")}
           style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
-            fontWeight: 600,
-            fontSize: "1.6rem",
-            letterSpacing: "0.25em",
-            color: "#F7F2EC",
             background: "none",
             border: "none",
             cursor: "pointer",
-            textTransform: "uppercase",
+            display: "flex",
+            alignItems: "center",
+            padding: 0,
           }}
         >
-          ONYX
+          <img
+            src={logoImg}
+            alt="Onyx Espresso Bar Logo"
+            style={{
+              height: "48px",
+              width: "auto",
+              objectFit: "contain",
+              border: "1.5px solid #C49A3C",
+              borderRadius: "4px",
+            }}
+          />
         </button>
 
         {/* Desktop nav */}

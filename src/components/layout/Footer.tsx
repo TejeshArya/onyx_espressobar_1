@@ -1,4 +1,5 @@
 import { Instagram, Facebook, Heart } from "lucide-react";
+import logoImg from "@/assets/images/logo.jpg";
 
 interface FooterProps {
   onBookNow: () => void;
@@ -101,30 +102,20 @@ export function Footer({ onBookNow }: FooterProps) {
       >
         {/* Brand column */}
         <div>
-          <p
-            style={{
-              fontFamily: "'Playfair Display', Georgia, serif",
-              fontWeight: 700,
-              fontSize: "1.8rem",
-              letterSpacing: "0.2em",
-              color: "#F7F2EC",
-              marginBottom: "0.5rem",
-            }}
-          >
-            ONYX
-          </p>
-          <p
-            style={{
-              fontFamily: "'Nunito', sans-serif",
-              fontSize: "0.75rem",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "#C49A3C",
-              marginBottom: "1.25rem",
-            }}
-          >
-            Espresso Bar
-          </p>
+          <div style={{ marginBottom: "1rem" }}>
+            <img
+              src={logoImg}
+              alt="Onyx Espresso Bar Logo"
+              style={{
+                height: "54px",
+                width: "auto",
+                objectFit: "contain",
+                border: "1.5px solid #C49A3C",
+                borderRadius: "4px",
+                background: "#FFFFFF",
+              }}
+            />
+          </div>
           <p
             style={{
               fontFamily: "'Nunito', sans-serif",
@@ -238,8 +229,7 @@ export function Footer({ onBookNow }: FooterProps) {
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
             {[
-              { label: "Mon – Fri", time: "7:00 AM – 3:00 PM" },
-              { label: "Sat – Sun", time: "7:30 AM – 2:30 PM" },
+              { label: "Mon – Sun", time: "7:00 AM – 2:00 PM" },
             ].map((h) => (
               <div key={h.label} style={{ display: "flex", justifyContent: "space-between", gap: "1rem" }}>
                 <span style={{ fontFamily: "'Nunito', sans-serif", fontSize: "0.88rem", color: "rgba(247,242,236,0.55)" }}>
@@ -270,12 +260,12 @@ export function Footer({ onBookNow }: FooterProps) {
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
             {[
-              "Mayfield, Newcastle NSW 2304",
-              "(02) 4000 0000",
-              "Onyxespressobar@gmail.com",
+              { type: "text", value: "191 Maitland road" },
+              { type: "phone", value: "02 4049 6013" },
+              { type: "email", value: "Onyxespressobar@gmail.com" },
             ].map((line) => (
               <p
-                key={line}
+                key={line.value}
                 style={{
                   fontFamily: "'Nunito', sans-serif",
                   fontSize: "0.88rem",
@@ -283,7 +273,17 @@ export function Footer({ onBookNow }: FooterProps) {
                   lineHeight: 1.5,
                 }}
               >
-                {line}
+                {line.type === "phone" ? (
+                  <a href="tel:0240496013" style={{ color: "rgba(247,242,236,0.55)", textDecoration: "none", borderBottom: "1px dashed rgba(196,154,60,0.4)", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "#C49A3C"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(247,242,236,0.55)"}>
+                    {line.value}
+                  </a>
+                ) : line.type === "email" ? (
+                  <a href="mailto:Onyxespressobar@gmail.com" style={{ color: "rgba(247,242,236,0.55)", textDecoration: "none", borderBottom: "1px dashed rgba(196,154,60,0.4)", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "#C49A3C"} onMouseLeave={(e) => e.currentTarget.style.color = "rgba(247,242,236,0.55)"}>
+                    {line.value}
+                  </a>
+                ) : (
+                  line.value
+                )}
               </p>
             ))}
           </div>

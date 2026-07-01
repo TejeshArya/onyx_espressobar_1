@@ -81,7 +81,7 @@ export function HeroSection({ onBookNow }: HeroSectionProps) {
             marginBottom: "1.25rem",
           }}
         >
-          Est. 2016 · Mayfield, Newcastle NSW
+          Mayfield, Newcastle NSW
         </p>
 
         <h1

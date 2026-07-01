@@ -56,43 +56,6 @@ export function AboutSection() {
               pointerEvents: "none",
             }}
           />
-          {/* Est badge */}
-          <div
-            style={{
-              position: "absolute",
-              top: "1.5rem",
-              left: "1.5rem",
-              background: "#C49A3C",
-              padding: "1rem 1.25rem",
-              textAlign: "center",
-              zIndex: 2,
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "'Nunito', sans-serif",
-                fontWeight: 700,
-                fontSize: "0.65rem",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "#FFFFFF",
-                marginBottom: "0.15rem",
-              }}
-            >
-              Est.
-            </p>
-            <p
-              style={{
-                fontFamily: "'Playfair Display', Georgia, serif",
-                fontWeight: 700,
-                fontSize: "1.6rem",
-                color: "#FFFFFF",
-                lineHeight: 1,
-              }}
-            >
-              2016
-            </p>
-          </div>
         </div>
 
         {/* Text content */}
@@ -134,7 +97,7 @@ export function AboutSection() {
               marginBottom: "1.25rem",
             }}
           >
-            Onyx Espresso Bar has been a beloved fixture in the Mayfield community since 2016.
+            Onyx Espresso Bar has been a beloved fixture in the Mayfield community for years.
             We opened with a simple belief: that a great café is more than just a place to get
             coffee — it's a space where people connect, slow down, and feel at home.
           </p>

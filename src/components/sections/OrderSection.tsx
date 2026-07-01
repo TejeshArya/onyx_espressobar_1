@@ -1,4 +1,4 @@
-import { ShoppingBag, Truck, Check } from "lucide-react";
+import { ShoppingBag, Truck, Check, Phone } from "lucide-react";
 
 export function OrderSection() {
   const options = [
@@ -32,6 +32,16 @@ export function OrderSection() {
       accent: "#FF3008", // DoorDash Red
       benefits: ["Convenient local delivery", "DashPass eligible", "Scheduled delivery slots"],
       icon: Truck,
+    },
+    {
+      name: "Call to Place Order",
+      type: "Direct Phone Ordering",
+      description: "Prefer to order over the phone? Give us a call directly to place your pickup order. We'll have your food and coffee ready for you.",
+      link: "tel:0240496013",
+      cta: "Call (02) 4049 6013",
+      accent: "#C49A3C", // Gold
+      benefits: ["Direct team communication", "Tailor-made custom requests", "Zero app fees, zero wait time"],
+      icon: Phone,
     },
   ];
 
@@ -124,7 +134,7 @@ export function OrderSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "2.5rem",
             alignItems: "stretch",
           }}

@@ -17,7 +17,7 @@ interface BookingFormData {
 const timeSlots = [
   "7:00 AM", "7:30 AM", "8:00 AM", "8:30 AM", "9:00 AM", "9:30 AM",
   "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM", "12:00 PM", "12:30 PM",
-  "1:00 PM", "1:30 PM", "2:00 PM", "2:30 PM",
+  "1:00 PM", "1:30 PM",
 ];
 
 interface BookingSectionProps {
@@ -460,9 +460,9 @@ export function BookingSection({ isModalOpen = false, onCloseModal }: BookingSec
           {/* Info boxes */}
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {[
-              { label: "Opening Hours", value: "Mon – Fri: 7:00 AM – 3:00 PM\nSat – Sun: 7:30 AM – 2:30 PM" },
-              { label: "Location", value: "Mayfield, Newcastle NSW 2304" },
-              { label: "Phone", value: "(02) 4000 0000" },
+              { label: "Opening Hours", value: "Mon – Sun: 7:00 AM – 2:00 PM" },
+              { label: "Location", value: "191 Maitland road" },
+              { label: "Phone", value: "02 4049 6013" },
             ].map((info) => (
               <div
                 key={info.label}

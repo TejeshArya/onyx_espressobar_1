@@ -11,13 +11,13 @@ interface ContactFormData {
 }
 
 const hours = [
-  { day: "Monday", time: "7:00 AM – 3:00 PM" },
-  { day: "Tuesday", time: "7:00 AM – 3:00 PM" },
-  { day: "Wednesday", time: "7:00 AM – 3:00 PM" },
-  { day: "Thursday", time: "7:00 AM – 3:00 PM" },
-  { day: "Friday", time: "7:00 AM – 3:00 PM" },
-  { day: "Saturday", time: "7:30 AM – 2:30 PM" },
-  { day: "Sunday", time: "7:30 AM – 2:30 PM" },
+  { day: "Monday", time: "7:00 AM – 2:00 PM" },
+  { day: "Tuesday", time: "7:00 AM – 2:00 PM" },
+  { day: "Wednesday", time: "7:00 AM – 2:00 PM" },
+  { day: "Thursday", time: "7:00 AM – 2:00 PM" },
+  { day: "Friday", time: "7:00 AM – 2:00 PM" },
+  { day: "Saturday", time: "7:00 AM – 2:00 PM" },
+  { day: "Sunday", time: "7:00 AM – 2:00 PM" },
 ];
 
 const today = new Date().toLocaleDateString("en-AU", { weekday: "long" });
@@ -102,7 +102,7 @@ export function ContactSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "3rem",
             marginBottom: "4.5rem",
             alignItems: "start",
@@ -205,8 +205,8 @@ export function ContactSection() {
 
               <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
                 {[
-                  { icon: MapPin, label: "Address", value: "Mayfield, Newcastle NSW 2304" },
-                  { icon: Phone, label: "Phone", value: "(02) 4000 0000" },
+                  { icon: MapPin, label: "Address", value: "191 Maitland road" },
+                  { icon: Phone, label: "Phone", value: "02 4049 6013" },
                   { icon: Mail, label: "Email", value: "Onyxespressobar@gmail.com" },
                 ].map((item) => {
                   const Icon = item.icon;
@@ -237,7 +237,17 @@ export function ContactSection() {
                             color: "#1A1512",
                           }}
                         >
-                          {item.value}
+                          {item.label === "Phone" ? (
+                            <a href={`tel:${item.value.replace(/\s+/g, '')}`} style={{ color: "#1A1512", textDecoration: "none", borderBottom: "1.5px dashed #C49A3C", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "#C49A3C"} onMouseLeave={(e) => e.currentTarget.style.color = "#1A1512"}>
+                              {item.value}
+                            </a>
+                          ) : item.label === "Email" ? (
+                            <a href={`mailto:${item.value}`} style={{ color: "#1A1512", textDecoration: "none", borderBottom: "1.5px dashed #C49A3C", transition: "color 0.2s" }} onMouseEnter={(e) => e.currentTarget.style.color = "#C49A3C"} onMouseLeave={(e) => e.currentTarget.style.color = "#1A1512"}>
+                              {item.value}
+                            </a>
+                          ) : (
+                            item.value
+                          )}
                         </p>
                       </div>
                     </div>
@@ -475,7 +485,7 @@ export function ContactSection() {
         <div style={{ background: "#1A1512", minHeight: "420px", position: "relative", overflow: "hidden", border: "1px solid rgba(26,21,18,0.06)" }}>
           <iframe
             title="Onyx Espresso Bar Location"
-            src="https://maps.google.com/maps?q=Mayfield+Newcastle+NSW&t=&z=15&ie=UTF8&iwloc=&output=embed"
+            src="https://maps.google.com/maps?q=191+Maitland+road+Mayfield+NSW+2304&t=&z=16&ie=UTF8&iwloc=&output=embed"
             style={{ width: "100%", height: "100%", border: "none", minHeight: "420px", filter: "sepia(20%) contrast(95%)" }}
             loading="lazy"
           />
@@ -499,7 +509,7 @@ export function ContactSection() {
                 color: "#FFFFFF",
               }}
             >
-              Mayfield, Newcastle NSW
+              191 Maitland road Mayfield
             </p>
           </div>
         </div>

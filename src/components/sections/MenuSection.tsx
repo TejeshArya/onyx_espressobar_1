@@ -709,7 +709,7 @@ export function MenuSection() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
                 gap: "2.5rem",
                 maxWidth: "960px",
                 margin: "0 auto 3.5rem",
@@ -854,28 +854,56 @@ export function MenuSection() {
                   marginBottom: "1.25rem",
                 }}
               >
-                Need a copy on the go? Download our full menu as a print-ready PDF.
+                Need a copy on the go? Download our full high-definition menus as print-ready PDFs.
               </p>
-              <button
-                onClick={() => alert("The full print-ready PDF menu download will be set up when the final PDF file is provided. In the meantime, you can download each page photo directly.")}
-                style={{
-                  fontFamily: "'Nunito', sans-serif",
-                  fontWeight: 700,
-                  fontSize: "0.8rem",
-                  letterSpacing: "0.2em",
-                  textTransform: "uppercase",
-                  color: "#FFFFFF",
-                  background: "#1A1512",
-                  border: "none",
-                  cursor: "pointer",
-                  padding: "1rem 2.5rem",
-                  transition: "background 0.2s ease",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "#C49A3C")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "#1A1512")}
-              >
-                Download PDF Menu (Placeholder)
-              </button>
+              <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+                <a
+                  href="/onyx_food_menu.pdf"
+                  download="Onyx_Food_Menu.pdf"
+                  style={{
+                    fontFamily: "'Nunito', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "0.8rem",
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: "#FFFFFF",
+                    background: "#1A1512",
+                    border: "none",
+                    cursor: "pointer",
+                    padding: "1rem 2rem",
+                    textDecoration: "none",
+                    display: "inline-block",
+                    transition: "background 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#C49A3C")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#1A1512")}
+                >
+                  Download Food Menu (PDF)
+                </a>
+                <a
+                  href="/onyx_drinks_menu.pdf"
+                  download="Onyx_Drinks_Menu.pdf"
+                  style={{
+                    fontFamily: "'Nunito', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "0.8rem",
+                    letterSpacing: "0.2em",
+                    textTransform: "uppercase",
+                    color: "#FFFFFF",
+                    background: "#1A1512",
+                    border: "none",
+                    cursor: "pointer",
+                    padding: "1rem 2rem",
+                    textDecoration: "none",
+                    display: "inline-block",
+                    transition: "background 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#C49A3C")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "#1A1512")}
+                >
+                  Download Drinks Menu (PDF)
+                </a>
+              </div>
             </div>
           </div>
         ) : (
@@ -1062,7 +1090,7 @@ export function MenuSection() {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
                   gap: "2rem",
                   marginBottom: "3.5rem",
                   animation: "fadeIn 0.4s ease",
@@ -1243,116 +1271,39 @@ export function MenuSection() {
                     }}
                   >
                     <div>
-                      {/* Image (If available) */}
-                      {item.image ? (
-                        <div style={{ position: "relative", overflow: "hidden", height: "230px" }}>
-                          <ImageWithFallback
-                            src={item.image}
-                            alt={item.name}
-                            style={{
-                              width: "100%",
-                              height: "100%",
-                              objectFit: "cover",
-                              transition: "transform 0.4s ease",
-                            }}
-                          />
-                          {/* Badge (e.g. Best Seller) */}
-                          {item.badge && (
-                            <span
-                              style={{
-                                position: "absolute",
-                                top: "1rem",
-                                left: "1rem",
-                                background: "#C49A3C",
-                                color: "#FFFFFF",
-                                fontFamily: "'Nunito', sans-serif",
-                                fontWeight: 800,
-                                fontSize: "0.62rem",
-                                letterSpacing: "0.12em",
-                                textTransform: "uppercase",
-                                padding: "0.35rem 0.8rem",
-                                boxShadow: "0 2px 10px rgba(0,0,0,0.15)",
-                                zIndex: 1,
-                              }}
-                            >
-                              {item.badge}
-                            </span>
-                          )}
+                      {/* Dietary tags display */}
+                      {item.tags && item.tags.length > 0 && (
+                        <div
+                          style={{
+                            padding: "1.25rem 1.5rem 0.2rem",
+                            display: "flex",
+                            gap: "0.35rem",
+                          }}
+                        >
+                          {item.tags.map((tag) => {
+                            let tagColor = "#C49A3C";
+                            if (tag === "VE") tagColor = "#4F7942";
+                            else if (tag === "GF") tagColor = "#B87333";
+                            else if (tag === "GFO") tagColor = "#5A5A5A";
 
-                          {/* Dietary Badges on Image */}
-                          {item.tags && item.tags.length > 0 && (
-                            <div
-                              style={{
-                                position: "absolute",
-                                bottom: "0.8rem",
-                                right: "0.8rem",
-                                display: "flex",
-                                gap: "0.35rem",
-                                zIndex: 1,
-                              }}
-                            >
-                              {item.tags.map((tag) => {
-                                let tagColor = "#C49A3C"; // V
-                                if (tag === "VE") tagColor = "#4F7942";
-                                else if (tag === "GF") tagColor = "#B87333";
-                                else if (tag === "GFO") tagColor = "#5A5A5A";
-
-                                return (
-                                  <span
-                                    key={tag}
-                                    style={{
-                                      background: tagColor,
-                                      color: "#FFFFFF",
-                                      fontFamily: "'Nunito', sans-serif",
-                                      fontWeight: 800,
-                                      fontSize: "0.62rem",
-                                      padding: "0.2rem 0.5rem",
-                                      borderRadius: "1px",
-                                      boxShadow: "0 1px 4px rgba(0,0,0,0.15)",
-                                    }}
-                                  >
-                                    {tag}
-                                  </span>
-                                );
-                              })}
-                            </div>
-                          )}
+                            return (
+                              <span
+                                key={tag}
+                                style={{
+                                  background: "transparent",
+                                  border: `1px solid ${tagColor}`,
+                                  color: tagColor,
+                                  fontFamily: "'Nunito', sans-serif",
+                                  fontWeight: 800,
+                                  fontSize: "0.58rem",
+                                  padding: "0.15rem 0.45rem",
+                                }}
+                              >
+                                {tag}
+                              </span>
+                            );
+                          })}
                         </div>
-                      ) : (
-                        // Header tag display for text-only items (e.g. coffee)
-                        item.tags && item.tags.length > 0 && (
-                          <div
-                            style={{
-                              padding: "1.25rem 1.5rem 0.2rem",
-                              display: "flex",
-                              gap: "0.35rem",
-                            }}
-                          >
-                            {item.tags.map((tag) => {
-                              let tagColor = "#C49A3C";
-                              if (tag === "VE") tagColor = "#4F7942";
-                              else if (tag === "GF") tagColor = "#B87333";
-                              else if (tag === "GFO") tagColor = "#5A5A5A";
-
-                              return (
-                                <span
-                                  key={tag}
-                                  style={{
-                                    background: "transparent",
-                                    border: `1px solid ${tagColor}`,
-                                    color: tagColor,
-                                    fontFamily: "'Nunito', sans-serif",
-                                    fontWeight: 800,
-                                    fontSize: "0.58rem",
-                                    padding: "0.15rem 0.45rem",
-                                  }}
-                                >
-                                  {tag}
-                                </span>
-                              );
-                            })}
-                          </div>
-                        )
                       )}
 
                       {/* Text Details */}
@@ -1377,6 +1328,25 @@ export function MenuSection() {
                             }}
                           >
                             {item.name}
+                            {item.badge && (
+                              <span
+                                style={{
+                                  background: "#C49A3C",
+                                  color: "#FFFFFF",
+                                  fontFamily: "'Nunito', sans-serif",
+                                  fontWeight: 800,
+                                  fontSize: "0.55rem",
+                                  letterSpacing: "0.08em",
+                                  textTransform: "uppercase",
+                                  padding: "0.15rem 0.4rem",
+                                  marginLeft: "0.5rem",
+                                  verticalAlign: "middle",
+                                  display: "inline-block",
+                                }}
+                              >
+                                {item.badge}
+                              </span>
+                            )}
                           </h3>
 
                           {/* Price Render */}
